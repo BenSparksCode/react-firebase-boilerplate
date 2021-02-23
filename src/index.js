@@ -1,17 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
+
+
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
+
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <AppContextWithFirestore>
+    <BrowserRouter>
+      <DashboardLayout>
+        <Switch>
+
+
+          <Route path="/page1" exact component={Page1} />
+          <Route path="/page2" component={Page2} />
+
+          <Redirect from="*" to="/page1" />
+        </Switch>
+      </DashboardLayout>
+    </BrowserRouter>
+  </AppContextWithFirestore>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
